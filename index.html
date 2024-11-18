@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor do Brasil</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <img src="assets/logo/logo_sabor_do_brasil.png" alt="Logo Sabor do Brasil">
+  <h2>Sabor do Brasil</h2>
+  <hr>
+  <div class="likes">
+    <div>
+      <h1>9</h1>
+      <p>Quantidade Likes</p>
+    </div>
+    <div>
+      <h1>12</h1>
+      <p>Quantidade Deslikes</p>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <h1>Publicações</h1>
+  
+  <!-- Post 1 -->
+  <div class="post">
+    <div class="post-header">Título do prato 01</div>
+    <img src="assets/publicacao/publicacao01.png" alt="Prato 01">
+    <div class="post-footer">
+      <span>Local 01</span>
+      <span>Maceió-AL</span>
+    </div>
+    <div class="post-flecha-coment">
+      <div class="post-flecha">
+        <img id="flechaCima" src="assets/icones/flecha_cima_vazia.svg" alt="FCV">
+        <h3>2</h3>
+        <img id="flechaBaixo" src="assets/icones/flecha_baixo_vazia.svg" alt="FBV">
+        <h3>1</h3>
+      </div>
+      <div class="post-coment">
+        <img src="assets/icones/chat.svg" alt="coment">
+        <h3>4</h3>
+      </div>
+    </div>
+    
+  </div>  
+
+  <!-- Post 2 -->
+  <div class="post">
+    <div class="post-header">Título do prato 02</div>
+    <img src="assets/publicacao/publicacao02.png" alt="Prato 02">
+    <div class="post-footer">
+      <span>Local 02</span>
+      <span>Maceió-AL</span>
+    </div>
+    <div class="post-flecha-coment">
+      <div class="post-flecha">
+        <img src="assets/icones/flecha_cima_vazia.svg" alt="FCV">
+        <h3>2</h3>
+        <img src="assets/icones/flecha_baixo_vazia.svg" alt="FBV">
+        <h3>1</h3>
+      </div>
+      <div class="post-coment">
+        <img src="assets/icones/chat.svg" alt="coment">
+        <h3>4</h3>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Post 3 -->
+  <div class="post post-end">
+    <div class="post-header">Título do prato 03</div>
+    <img src="assets/publicacao/publicacao03.png" alt="Prato 03">
+    <div class="post-footer">
+      <span>Local 03</span>
+      <span>Maceió-AL</span>
+    </div>
+    <div class="post-flecha-coment">
+      <div class="post-flecha">
+        <img src="assets/icones/flecha_cima_vazia.svg" alt="FCV">
+        <h3>2</h3>
+        <img src="assets/icones/flecha_baixo_vazia.svg" alt="FBV">
+        <h3>1</h3>
+      </div>
+      <div class="post-coment">
+        <img src="assets/icones/chat.svg" alt="coment">
+        <h3>4</h3>
+      </div>
+    </div>    
+  </div>
+</div>
+
+<!-- Login Button -->
+<div class="login-button">
+  <button id="enter-offmodal" class="enter-btn-offmodal">Entrar</button>
+</div>
+
+<footer>
+  <div class="footer-content">
+      <div class="p1">
+        <h4>Sabor do Brasil</h4>
+      </div>
+
+      <div class="p2">
+        <img src="assets/icones/Instagram.svg" alt="Instagram">
+      <img src="assets/icones/Twitter.svg" alt="Twitter">
+      <img src="assets/icones/Whatsapp.svg" alt="Whatsapp">
+      <img src="assets/icones/Globe.svg" alt="Globe">
+      </div>
+
+      <div class="p3">
+        <h4>Copyright - 2024</h4>
+      </div>
+  </div>
+</footer>
+
+  <!-- The Modal -->
+  <div id="Modal" class="entrar-modal">
+    <div class="modal-content">
+        <h2 class="login">Login</h2>
+        <input type="email" class="email" id="floatingInput" placeholder="Digite seu e-mail">
+        <input type="password" class="password" id="floatingPassword" placeholder="Digite sua senha">
+        <div class="btn">
+            <button class="close-btn">Cancelar</button>
+            <button class="enter-btn">Entrar</button>
+        </div>
+        <div id="errorMessage" class="error-message">Usuário ou senha incorretos.</div>
+    </div>
+</div>
+
+<script>
+// MODAL
+  const modal = document.getElementById("Modal");
+  const openModalBtn = document.getElementById("enter-offmodal");
+  const closeBtn = document.getElementsByClassName("close-btn")[0];
+  const enterBtn = document.querySelector(".enter-btn");
+  const emailInput = document.getElementById("floatingInput");
+  const passwordInput = document.getElementById("floatingPassword");
+  const errorMessage = document.getElementById("errorMessage");
+
+  openModalBtn.onclick = function () {
+      modal.style.display = "block";
+  };
+
+  closeBtn.onclick = function () {
+      modal.style.display = "none";
+      resetError();
+  };
+
+  window.onclick = function (event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+          resetError();
+      }
+  };
+
+  // ERRO CREDENCIAIS
+  enterBtn.onclick = function () {
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      if (email !== "teste@exemplo.com" || password !== "1234") {
+          displayError();
+      } else {
+          modal.style.display = "none";
+          alert("Login bem-sucedido!");
+      }
+  };
+
+  function displayError() {
+      errorMessage.style.display = "block";
+      emailInput.classList.add("input-error");
+      passwordInput.classList.add("input-error");
+  }
+
+  function resetError() {
+      errorMessage.style.display = "none";
+      emailInput.classList.remove("input-error");
+      passwordInput.classList.remove("input-error");
+      emailInput.value = "";
+      passwordInput.value = "";
+  }
+
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+  const flechaCima = document.getElementById('flechaCima');
+  const flechaBaixo = document.getElementById('flechaBaixo');
+
+  // CLIQUE IMAGENS
+  flechaCima.addEventListener('click', function() {
+    toggleFlechaCima();
+  });
+
+  flechaBaixo.addEventListener('click', function() {
+    toggleFlechaBaixo();
+  });
+
+  //SETA CIMA
+  function toggleFlechaCima() {
+    if (flechaCima.src.includes('flecha_cima_vazia.svg')) {
+      flechaCima.src = 'assets/icones/flecha_cima_cheia.svg';
+    } else {
+      flechaCima.src = 'assets/icones/flecha_cima_vazia.svg';
+    }
+  }
+
+  //SETA BAIXO
+  function toggleFlechaBaixo() {
+    if (flechaBaixo.src.includes('flecha_baixo_vazia.svg')) {
+      flechaBaixo.src = 'assets/icones/flecha_baixo_cheia.svg';
+    } else {
+      flechaBaixo.src = 'assets/icones/flecha_baixo_vazia.svg';
+    }
+  }
+});
+
+</script>
+</body>
+</html>
